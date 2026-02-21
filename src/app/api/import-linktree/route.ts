@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
   try {
     // Fetch the Linktree page HTML
     const res = await fetch(`https://linktr.ee/${username}`, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; LynnTree/1.0)' }
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; JellyTree/1.0)' }
     })
     if (!res.ok) throw new Error(`Linktree returned ${res.status}`)
     

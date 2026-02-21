@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { JellyTreeProfile, getDemoProfile } from '@/lib/linktree-import'
 import ImportFlow from '@/components/ImportFlow'
 import ProfilePage from '@/components/ProfilePage'
+import PhonePreview from '@/components/PhonePreview'
 
 export default function Home() {
   const [profile, setProfile] = useState<JellyTreeProfile | null>(null)
@@ -26,17 +27,21 @@ export default function Home() {
         <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/10 px-4 py-2 flex items-center justify-between">
           <button
             onClick={() => setMode('import')}
-            className="text-sm text-white/60 hover:text-white"
+            className="text-sm text-white/60 hover:text-white flex items-center gap-1"
           >
             ← Back to editor
           </button>
+          <div className="flex items-center gap-2">
+            <img src="/jelly-icon.svg" alt="" className="w-4 h-4 opacity-50" />
+            <span className="text-sm font-semibold jj-text">JellyTree</span>
+          </div>
           <div className="flex items-center gap-3">
-            <span className="text-xs text-white/30">
+            <span className="text-xs text-white/30 hidden sm:inline">
               tree.jellyjelly.com/{profile.username || 'yourname'}
             </span>
             <button
               onClick={() => {
-                const url = profile.customDomain 
+                const url = profile.customDomain
                   ? `https://${profile.customDomain}`
                   : `https://tree.jellyjelly.com/${profile.username}`
                 navigator.clipboard.writeText(url)
@@ -50,8 +55,23 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="pt-12">
-          <ProfilePage profile={profile} />
+
+        {/* Desktop: side-by-side phone preview + full page */}
+        <div className="pt-14 min-h-screen">
+          {/* Mobile: just show the page */}
+          <div className="lg:hidden">
+            <ProfilePage profile={profile} />
+          </div>
+          
+          {/* Desktop: phone preview + full page */}
+          <div className="hidden lg:flex items-start justify-center gap-12 py-12 px-8">
+            <div className="sticky top-24">
+              <PhonePreview profile={profile} />
+            </div>
+            <div className="flex-1 max-w-lg">
+              <ProfilePage profile={profile} />
+            </div>
+          </div>
         </div>
       </div>
     )
