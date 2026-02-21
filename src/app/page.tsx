@@ -1,15 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { LynnTreeProfile, getDemoProfile } from '@/lib/linktree-import'
+import { JellyTreeProfile, getDemoProfile } from '@/lib/linktree-import'
 import ImportFlow from '@/components/ImportFlow'
 import ProfilePage from '@/components/ProfilePage'
 
 export default function Home() {
-  const [profile, setProfile] = useState<LynnTreeProfile | null>(null)
+  const [profile, setProfile] = useState<JellyTreeProfile | null>(null)
   const [mode, setMode] = useState<'import' | 'preview'>('import')
 
-  function handleImport(p: LynnTreeProfile) {
+  function handleImport(p: JellyTreeProfile) {
     setProfile(p)
     setMode('preview')
   }
@@ -32,13 +32,13 @@ export default function Home() {
           </button>
           <div className="flex items-center gap-3">
             <span className="text-xs text-white/30">
-              lynn.jellyjelly.com/{profile.username || 'yourname'}
+              tree.jellyjelly.com/{profile.username || 'yourname'}
             </span>
             <button
               onClick={() => {
                 const url = profile.customDomain 
                   ? `https://${profile.customDomain}`
-                  : `https://lynn.jellyjelly.com/${profile.username}`
+                  : `https://tree.jellyjelly.com/${profile.username}`
                 navigator.clipboard.writeText(url)
               }}
               className="text-xs bg-white/10 hover:bg-white/20 rounded-lg px-3 py-1.5 transition-colors"

@@ -6,7 +6,7 @@ export interface LinkItem {
   thumbnail?: string
 }
 
-export interface LynnTreeProfile {
+export interface JellyTreeProfile {
   username: string
   displayName: string
   bio: string
@@ -18,7 +18,7 @@ export interface LynnTreeProfile {
 }
 
 // Parse a Linktree URL and scrape the profile data
-export async function importFromLinktree(url: string): Promise<LynnTreeProfile> {
+export async function importFromLinktree(url: string): Promise<JellyTreeProfile> {
   // Extract username from URL
   const username = url.replace(/https?:\/\/(www\.)?linktr\.ee\//, '').replace(/\/$/, '')
   
@@ -27,14 +27,14 @@ export async function importFromLinktree(url: string): Promise<LynnTreeProfile> 
   return res.json()
 }
 
-// Generate a unique LynnTree URL
-export function getLynnTreeUrl(username: string, customDomain?: string): string {
+// Generate a unique JellyTree URL
+export function getJellyTreeUrl(username: string, customDomain?: string): string {
   if (customDomain) return `https://${customDomain}`
-  return `https://lynn.jellyjelly.com/${username}`
+  return `https://tree.jellyjelly.com/${username}`
 }
 
 // Demo data for prototype
-export function getDemoProfile(): LynnTreeProfile {
+export function getDemoProfile(): JellyTreeProfile {
   return {
     username: 'jellyjelly',
     displayName: 'JellyJelly',

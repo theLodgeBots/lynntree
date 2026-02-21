@@ -1,8 +1,8 @@
 'use client'
 
-import { LynnTreeProfile } from '@/lib/linktree-import'
+import { JellyTreeProfile } from '@/lib/linktree-import'
 
-export default function ProfilePage({ profile }: { profile: LynnTreeProfile }) {
+export default function ProfilePage({ profile }: { profile: JellyTreeProfile }) {
   const themeStyles = {
     jellyjelly: 'bg-[#0a0a0a] text-white',
     dark: 'bg-[#0a0a0a] text-white',
@@ -69,7 +69,7 @@ export default function ProfilePage({ profile }: { profile: LynnTreeProfile }) {
       <div className="mt-12 text-center">
         <a href="https://jellyjelly.com" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors">
           <img src="/jelly-icon.svg" alt="" className="w-5 h-5 opacity-50" />
-          <span>Get your own <span className="jj-text font-semibold">LynnTree</span></span>
+          <span>Get your own <span className="jj-text font-semibold">JellyTree</span></span>
         </a>
       </div>
     </div>

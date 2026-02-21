@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { LynnTreeProfile } from '@/lib/linktree-import'
+import { JellyTreeProfile } from '@/lib/linktree-import'
 import ThemePicker from './ThemePicker'
 import AddLinkModal from './AddLinkModal'
 import SortableLink from './SortableLink'
@@ -9,7 +9,7 @@ import { DndContext, closestCenter, DragEndEvent } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable'
 
 interface ImportFlowProps {
-  onImport: (profile: LynnTreeProfile) => void
+  onImport: (profile: JellyTreeProfile) => void
   onDemo: () => void
 }
 
@@ -18,7 +18,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [step, setStep] = useState<'start' | 'customize'>('start')
-  const [profile, setProfile] = useState<LynnTreeProfile | null>(null)
+  const [profile, setProfile] = useState<JellyTreeProfile | null>(null)
   const [showAddLink, setShowAddLink] = useState(false)
 
   async function handleImport() {
@@ -44,7 +44,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
   if (step === 'customize' && profile) {
     return (
       <div className="w-full max-w-md mx-auto space-y-6">
-        <h2 className="text-xl font-bold text-center">Customize Your LynnTree</h2>
+        <h2 className="text-xl font-bold text-center">Customize Your JellyTree</h2>
         
         <div className="space-y-4">
           <div>
@@ -141,7 +141,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
           className="w-full jj-gradient rounded-xl px-6 py-4 font-bold text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
         >
           <img src="/jelly-icon.svg" alt="" className="w-5 h-5" />
-          Launch My LynnTree
+          Launch My JellyTree
         </button>
 
         {showAddLink && (
@@ -165,7 +165,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
       <div className="text-center space-y-3">
         <img src="/jelly-icon.svg" alt="JellyJelly" className="w-16 h-16 mx-auto" />
         <h1 className="text-3xl font-bold">
-          <span className="jj-text">LynnTree</span>
+          <span className="jj-text">JellyTree</span>
         </h1>
         <p className="text-white/50">Your bio link page, powered by JellyJelly</p>
       </div>
