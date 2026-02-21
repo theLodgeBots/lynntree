@@ -1,8 +1,21 @@
 'use client'
 
 import { JellyTreeProfile } from '@/lib/linktree-import'
+import AnalyticsPanel from './AnalyticsPanel'
 
-export default function ProfilePage({ profile }: { profile: JellyTreeProfile }) {
+function trackClick(linkId: string) {
+  try {
+    const stored = localStorage.getItem('jellytree-analytics')
+    const data = stored ? JSON.parse(stored) : {}
+    data[linkId] = {
+      clicks: (data[linkId]?.clicks || 0) + 1,
+      lastClicked: new Date().toISOString(),
+    }
+    localStorage.setItem('jellytree-analytics', JSON.stringify(data))
+  } catch {}
+}
+
+export default function ProfilePage({ profile, showAnalytics = false }: { profile: JellyTreeProfile; showAnalytics?: boolean }) {
   const themeStyles = {
     jellyjelly: 'bg-[#0a0a0a] text-white',
     dark: 'bg-[#0a0a0a] text-white',
@@ -51,6 +64,7 @@ export default function ProfilePage({ profile }: { profile: JellyTreeProfile }) 
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackClick(link.id)}
             className={`link-card ${cardStyles[profile.theme]} rounded-xl px-6 py-4 text-center font-medium transition-all`}
           >
             {link.title}
@@ -72,6 +86,14 @@ export default function ProfilePage({ profile }: { profile: JellyTreeProfile }) 
           <span>Get your own <span className="jj-text font-semibold">JellyTree</span></span>
         </a>
       </div>
+
+      {/* Analytics panel (editor mode only) */}
+      {showAnalytics && (
+        <AnalyticsPanel
+          linkIds={profile.links.map(l => l.id)}
+          linkTitles={profile.links.map(l => l.title)}
+        />
+      )}
     </div>
   )
 }

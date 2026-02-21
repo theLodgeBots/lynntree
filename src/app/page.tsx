@@ -69,7 +69,7 @@ export default function Home() {
               <PhonePreview profile={profile} />
             </div>
             <div className="flex-1 max-w-lg">
-              <ProfilePage profile={profile} />
+              <ProfilePage profile={profile} showAnalytics />
             </div>
           </div>
         </div>
