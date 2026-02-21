@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { LynnTreeProfile } from '@/lib/linktree-import'
+import ThemePicker from './ThemePicker'
+import AddLinkModal from './AddLinkModal'
 
 interface ImportFlowProps {
   onImport: (profile: LynnTreeProfile) => void
@@ -14,6 +16,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
   const [error, setError] = useState('')
   const [step, setStep] = useState<'start' | 'customize'>('start')
   const [profile, setProfile] = useState<LynnTreeProfile | null>(null)
+  const [showAddLink, setShowAddLink] = useState(false)
 
   async function handleImport() {
     if (!url.trim()) return
@@ -83,8 +86,19 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
             />
           </div>
 
+          <ThemePicker
+            selected={profile.theme}
+            onChange={theme => setProfile({ ...profile, theme })}
+          />
+
           <div>
-            <label className="text-sm text-white/50 mb-2 block">Links ({profile.links.length} imported)</label>
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-sm text-white/50">Links ({profile.links.length})</label>
+              <button
+                onClick={() => setShowAddLink(true)}
+                className="text-xs text-pink-400 hover:text-pink-300"
+              >+ Add link</button>
+            </div>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {profile.links.map((link, i) => (
                 <div key={link.id} className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2 text-sm">
@@ -109,6 +123,19 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
         >
           🪼 Launch My LynnTree
         </button>
+
+        {showAddLink && (
+          <AddLinkModal
+            onAdd={(title, url) => {
+              setProfile({
+                ...profile,
+                links: [...profile.links, { id: Math.random().toString(36).slice(2), title, url }]
+              })
+              setShowAddLink(false)
+            }}
+            onClose={() => setShowAddLink(false)}
+          />
+        )}
       </div>
     )
   }

@@ -3,8 +3,20 @@
 import { LynnTreeProfile } from '@/lib/linktree-import'
 
 export default function ProfilePage({ profile }: { profile: LynnTreeProfile }) {
+  const themeStyles = {
+    jellyjelly: 'bg-[#0a0a0a] text-white',
+    dark: 'bg-[#0a0a0a] text-white',
+    light: 'bg-[#f5f5f5] text-[#111]',
+  }
+
+  const cardStyles = {
+    jellyjelly: 'jj-card',
+    dark: 'bg-white/8 border border-white/10',
+    light: 'bg-white border border-gray-200 shadow-sm',
+  }
+
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 py-12">
+    <div className={`min-h-screen flex flex-col items-center px-4 py-12 ${themeStyles[profile.theme]}`}>
       {/* JellyJelly branding */}
       <div className="fixed top-4 right-4 opacity-60 hover:opacity-100 transition-opacity">
         <a href="https://jellyjelly.com" target="_blank" className="text-xs text-white/50 hover:text-white flex items-center gap-1">
@@ -38,7 +50,7 @@ export default function ProfilePage({ profile }: { profile: LynnTreeProfile }) {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-card jj-card rounded-xl px-6 py-4 text-center font-medium hover:bg-white/12"
+            className={`link-card ${cardStyles[profile.theme]} rounded-xl px-6 py-4 text-center font-medium hover:opacity-80 transition-opacity`}
           >
             {link.title}
           </a>
