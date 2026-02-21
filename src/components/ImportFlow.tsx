@@ -4,6 +4,9 @@ import { useState } from 'react'
 import { LynnTreeProfile } from '@/lib/linktree-import'
 import ThemePicker from './ThemePicker'
 import AddLinkModal from './AddLinkModal'
+import SortableLink from './SortableLink'
+import { DndContext, closestCenter, DragEndEvent } from '@dnd-kit/core'
+import { SortableContext, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable'
 
 interface ImportFlowProps {
   onImport: (profile: LynnTreeProfile) => void
@@ -99,21 +102,37 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
                 className="text-xs jj-text hover:underline font-medium"
               >+ Add link</button>
             </div>
-            <div className="space-y-2 max-h-48 overflow-y-auto">
-              {profile.links.map((link, i) => (
-                <div key={link.id} className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2 text-sm">
-                  <span className="text-white/40">{i + 1}.</span>
-                  <span className="flex-1 truncate">{link.title}</span>
-                  <button
-                    onClick={() => setProfile({
-                      ...profile,
-                      links: profile.links.filter(l => l.id !== link.id)
-                    })}
-                    className="text-red-400 hover:text-red-300 text-xs"
-                  >✕</button>
+            <DndContext
+              collisionDetection={closestCenter}
+              onDragEnd={(event: DragEndEvent) => {
+                const { active, over } = event
+                if (over && active.id !== over.id) {
+                  const oldIndex = profile.links.findIndex(l => l.id === active.id)
+                  const newIndex = profile.links.findIndex(l => l.id === over.id)
+                  setProfile({
+                    ...profile,
+                    links: arrayMove(profile.links, oldIndex, newIndex)
+                  })
+                }
+              }}
+            >
+              <SortableContext items={profile.links.map(l => l.id)} strategy={verticalListSortingStrategy}>
+                <div className="space-y-2 max-h-48 overflow-y-auto">
+                  {profile.links.map((link, i) => (
+                    <SortableLink
+                      key={link.id}
+                      id={link.id}
+                      index={i}
+                      title={link.title}
+                      onRemove={() => setProfile({
+                        ...profile,
+                        links: profile.links.filter(l => l.id !== link.id)
+                      })}
+                    />
+                  ))}
                 </div>
-              ))}
-            </div>
+              </SortableContext>
+            </DndContext>
           </div>
         </div>
 
