@@ -1,23 +1,26 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --jj-pink: #ff2d87;
-  --jj-purple: #7c3aed;
+  --jj-blue: #8AABE4;
+  --jj-blue-dark: #6B8FD4;
+  --jj-blue-light: #A8C2EE;
   --jj-dark: #0a0a0a;
+  --jj-dark-surface: #141414;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .jj-gradient {
-  background: linear-gradient(135deg, var(--jj-pink), var(--jj-purple));
+  background: linear-gradient(135deg, var(--jj-blue), var(--jj-blue-dark));
 }
 
 .jj-card {
   backdrop-filter: blur(20px);
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(138,171,228,0.15);
 }
 
 .link-card {
@@ -25,5 +28,13 @@ body {
 }
 .link-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(255,45,135,0.2);
+  box-shadow: 0 8px 30px rgba(138,171,228,0.15);
+}
+
+.jj-text {
+  color: var(--jj-blue);
+}
+
+.jj-border {
+  border-color: rgba(138,171,228,0.3);
 }

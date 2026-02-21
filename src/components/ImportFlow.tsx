@@ -50,7 +50,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
               type="text"
               value={profile.displayName}
               onChange={e => setProfile({ ...profile, displayName: e.target.value })}
-              className="w-full bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-pink-500"
+              className="w-full bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#8AABE4]"
             />
           </div>
           
@@ -59,7 +59,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
             <textarea
               value={profile.bio}
               onChange={e => setProfile({ ...profile, bio: e.target.value })}
-              className="w-full bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-pink-500 resize-none"
+              className="w-full bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#8AABE4] resize-none"
               rows={2}
             />
           </div>
@@ -71,7 +71,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
               placeholder="@yourhandle"
               value={profile.jellyjellyHandle || ''}
               onChange={e => setProfile({ ...profile, jellyjellyHandle: e.target.value })}
-              className="w-full bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-pink-500"
+              className="w-full bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#8AABE4]"
             />
           </div>
 
@@ -82,7 +82,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
               placeholder="links.yourdomain.com"
               value={profile.customDomain || ''}
               onChange={e => setProfile({ ...profile, customDomain: e.target.value })}
-              className="w-full bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-pink-500"
+              className="w-full bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#8AABE4]"
             />
           </div>
 
@@ -96,7 +96,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
               <label className="text-sm text-white/50">Links ({profile.links.length})</label>
               <button
                 onClick={() => setShowAddLink(true)}
-                className="text-xs text-pink-400 hover:text-pink-300"
+                className="text-xs jj-text hover:underline font-medium"
               >+ Add link</button>
             </div>
             <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -119,9 +119,10 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
 
         <button
           onClick={() => onImport(profile)}
-          className="w-full jj-gradient rounded-xl px-6 py-4 font-bold text-lg hover:opacity-90 transition-opacity"
+          className="w-full jj-gradient rounded-xl px-6 py-4 font-bold text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
         >
-          🪼 Launch My LynnTree
+          <img src="/jelly-icon.svg" alt="" className="w-5 h-5" />
+          Launch My LynnTree
         </button>
 
         {showAddLink && (
@@ -142,10 +143,10 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
 
   return (
     <div className="w-full max-w-md mx-auto space-y-6">
-      <div className="text-center space-y-2">
-        <div className="text-6xl mb-4">🪼</div>
+      <div className="text-center space-y-3">
+        <img src="/jelly-icon.svg" alt="JellyJelly" className="w-16 h-16 mx-auto" />
         <h1 className="text-3xl font-bold">
-          <span className="jj-gradient bg-clip-text text-transparent">LynnTree</span>
+          <span className="jj-text">LynnTree</span>
         </h1>
         <p className="text-white/50">Your bio link page, powered by JellyJelly</p>
       </div>
@@ -160,7 +161,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
               value={url}
               onChange={e => setUrl(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleImport()}
-              className="flex-1 bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-pink-500 placeholder:text-white/20"
+              className="flex-1 bg-white/10 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#8AABE4] placeholder:text-white/20"
             />
             <button
               onClick={handleImport}
@@ -177,7 +178,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
 
         <button
           onClick={onDemo}
-          className="w-full jj-card rounded-xl px-6 py-4 font-medium hover:bg-white/12 transition-colors"
+          className="w-full jj-card rounded-xl px-6 py-4 font-medium hover:bg-white/10 transition-colors"
         >
           ✨ See a demo page
         </button>
@@ -195,7 +196,7 @@ export default function ImportFlow({ onImport, onDemo }: ImportFlowProps) {
             })
             setStep('customize')
           }}
-          className="w-full jj-card rounded-xl px-6 py-4 font-medium hover:bg-white/12 transition-colors"
+          className="w-full jj-card rounded-xl px-6 py-4 font-medium hover:bg-white/10 transition-colors"
         >
           🆕 Start from scratch
         </button>

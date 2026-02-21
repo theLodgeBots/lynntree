@@ -45,8 +45,8 @@ export default function Home() {
             >
               📋 Copy Link
             </button>
-            <button className="text-xs jj-gradient rounded-lg px-3 py-1.5 font-semibold">
-              Publish
+            <button className="text-xs jj-gradient rounded-lg px-3 py-1.5 font-semibold flex items-center gap-1">
+              <img src="/jelly-icon.svg" alt="" className="w-3.5 h-3.5" /> Publish
             </button>
           </div>
         </div>

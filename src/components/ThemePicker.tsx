@@ -1,7 +1,7 @@
 'use client'
 
 const themes = [
-  { id: 'jellyjelly' as const, name: 'JellyJelly', bg: 'linear-gradient(135deg, #ff2d87, #7c3aed)', text: '#fff' },
+  { id: 'jellyjelly' as const, name: 'JellyJelly', bg: 'linear-gradient(135deg, #8AABE4, #6B8FD4)', text: '#fff' },
   { id: 'dark' as const, name: 'Midnight', bg: '#0a0a0a', text: '#fff' },
   { id: 'light' as const, name: 'Clean', bg: '#f5f5f5', text: '#111' },
 ]
@@ -21,7 +21,7 @@ export default function ThemePicker({ selected, onChange }: ThemePickerProps) {
             key={t.id}
             onClick={() => onChange(t.id)}
             className={`flex-1 rounded-xl p-3 text-xs font-medium border-2 transition-all ${
-              selected === t.id ? 'border-pink-500 scale-105' : 'border-transparent opacity-60 hover:opacity-100'
+              selected === t.id ? 'border-[#8AABE4] scale-105' : 'border-transparent opacity-60 hover:opacity-100'
             }`}
             style={{ background: t.bg, color: t.text }}
           >

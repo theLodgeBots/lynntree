@@ -10,33 +10,34 @@ export default function ProfilePage({ profile }: { profile: LynnTreeProfile }) {
   }
 
   const cardStyles = {
-    jellyjelly: 'jj-card',
-    dark: 'bg-white/8 border border-white/10',
-    light: 'bg-white border border-gray-200 shadow-sm',
+    jellyjelly: 'jj-card hover:border-[#8AABE4]/30',
+    dark: 'bg-white/8 border border-white/10 hover:border-white/20',
+    light: 'bg-white border border-gray-200 shadow-sm hover:shadow-md',
   }
 
   return (
     <div className={`min-h-screen flex flex-col items-center px-4 py-12 ${themeStyles[profile.theme]}`}>
       {/* JellyJelly branding */}
       <div className="fixed top-4 right-4 opacity-60 hover:opacity-100 transition-opacity">
-        <a href="https://jellyjelly.com" target="_blank" className="text-xs text-white/50 hover:text-white flex items-center gap-1">
-          <span className="text-lg">🪼</span> JellyJelly
+        <a href="https://jellyjelly.com" target="_blank" className="flex items-center gap-1.5">
+          <img src="/jelly-icon.svg" alt="JellyJelly" className="w-5 h-5" />
+          <span className="text-xs text-white/50 hover:text-white">JellyJelly</span>
         </a>
       </div>
 
       {/* Avatar */}
-      <div className="w-24 h-24 rounded-full jj-gradient flex items-center justify-center text-4xl mb-4 shadow-lg shadow-pink-500/20">
+      <div className="w-24 h-24 rounded-full bg-[#8AABE4]/20 flex items-center justify-center mb-4 shadow-lg shadow-[#8AABE4]/10 border-2 border-[#8AABE4]/20">
         {profile.avatar ? (
           <img src={profile.avatar} alt={profile.displayName} className="w-full h-full rounded-full object-cover" />
         ) : (
-          '🪼'
+          <img src="/jelly-icon.svg" alt="JellyJelly" className="w-12 h-12 opacity-60" />
         )}
       </div>
 
       {/* Name & Bio */}
       <h1 className="text-2xl font-bold mb-1">{profile.displayName}</h1>
       {profile.jellyjellyHandle && (
-        <a href={`https://jellyjelly.com/${profile.jellyjellyHandle}`} className="text-pink-400 text-sm mb-2 hover:underline">
+        <a href={`https://jellyjelly.com/${profile.jellyjellyHandle}`} className="jj-text text-sm mb-2 hover:underline font-medium">
           {profile.jellyjellyHandle} on JellyJelly
         </a>
       )}
@@ -50,7 +51,7 @@ export default function ProfilePage({ profile }: { profile: LynnTreeProfile }) {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`link-card ${cardStyles[profile.theme]} rounded-xl px-6 py-4 text-center font-medium hover:opacity-80 transition-opacity`}
+            className={`link-card ${cardStyles[profile.theme]} rounded-xl px-6 py-4 text-center font-medium transition-all`}
           >
             {link.title}
           </a>
@@ -67,8 +68,8 @@ export default function ProfilePage({ profile }: { profile: LynnTreeProfile }) {
       {/* Footer */}
       <div className="mt-12 text-center">
         <a href="https://jellyjelly.com" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors">
-          <span className="text-xl">🪼</span>
-          <span>Get your own <span className="jj-gradient bg-clip-text text-transparent font-semibold">LynnTree</span></span>
+          <img src="/jelly-icon.svg" alt="" className="w-5 h-5 opacity-50" />
+          <span>Get your own <span className="jj-text font-semibold">LynnTree</span></span>
         </a>
       </div>
     </div>

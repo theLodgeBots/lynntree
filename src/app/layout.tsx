@@ -4,6 +4,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'LynnTree by JellyJelly',
   description: 'Your bio link page, powered by JellyJelly',
+  icons: { icon: '/jelly-icon.png' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
